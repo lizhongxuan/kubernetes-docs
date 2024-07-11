@@ -1,0 +1,14 @@
+FROM alpine:latest
+
+# set environment variables
+ENV SIDECAR_INJECTOR=/usr/local/bin/sidecar-injector \
+  USER_UID=1001 \
+  USER_NAME=sidecar-injector
+
+COPY sidecar-injector /usr/local/bin/sidecar-injector
+
+# set entrypoint
+ENTRYPOINT ["/usr/local/bin/sidecar-injector"]
+
+# switch to non-root user
+USER ${USER_UID}
